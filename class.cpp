@@ -560,70 +560,73 @@ void easy::getElapsedTime() {
 
 
 }
+
 void crazy::bang(int y, int x)//uncover the adjacent squares
 {
 
 	if ((mine_info[y][x] == 0) && (y > 0) && (y < 19) && (x > 0) && (x < 19))
 	{
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 		{
 			mvprintw(y, x + 1, "%d", crazy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 		{
 			mvprintw(y + 2, x + 1, "%d", crazy::mine_info[y + 1][x]);
 			notmine--;
-
-
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 		{
 			mvprintw(y + 1, x + 2, "%d", crazy::mine_info[y][x + 1]);
 			notmine--;
-
-
+			map_pressed[y][x + 1] = 1;
+			bang(y, x + 1);
 
 		}
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 		{
 			mvprintw(y + 1, x, "%d", crazy::mine_info[y][x - 1]);
 			notmine--;
-
-
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 
 		}
-		if (mine_info[y - 1][x - 1] != -1)
+		if (mine_info[y - 1][x - 1] != -1 && map_pressed[y - 1][x - 1] == 0)
 		{
 			mvprintw(y, x, "%d", crazy::mine_info[y - 1][x - 1]);
 			notmine--;
-
-
+			map_pressed[y - 1][x - 1] = 1;
+			bang(y - 1, x - 1);
 
 		}
-		if (mine_info[y + 1][x - 1] != -1)
+		if (mine_info[y + 1][x - 1] != -1 && map_pressed[y + 1][x - 1] == 0)
 		{
 			mvprintw(y + 2, x, "%d", crazy::mine_info[y + 1][x - 1]);
 			notmine--;
-
-
+			map_pressed[y + 1][x - 1] = 1;
+			bang(y + 1, x - 1);
 
 		}
-		if (mine_info[y - 1][x + 1] != -1)
+		if (mine_info[y - 1][x + 1] != -1 && map_pressed[y - 1][x + 1] == 0)
 		{
 			mvprintw(y, x + 2, "%d", crazy::mine_info[y - 1][x + 1]);
 			notmine--;
-
-
+			map_pressed[y - 1][x + 1] = 1;
+			bang(y - 1, x + 1);
 
 		}
-		if (mine_info[y + 1][x + 1] != -1)
+		if (mine_info[y + 1][x + 1] != -1 && map_pressed[y + 1][x + 1] == 0)
 		{
 			mvprintw(y + 2, x + 2, "%d", crazy::mine_info[y + 1][x + 1]);
 			notmine--;
-
+			map_pressed[y + 1][x + 1] = 1;
+			bang(y + 1, x + 1);
 
 		}
 
@@ -632,129 +635,153 @@ void crazy::bang(int y, int x)//uncover the adjacent squares
 
 	else if ((mine_info[y][x] == 0) && (x == 0) && (y == 0))
 	{
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 		{
 			mvprintw(y + 2, x + 1, "%d", crazy::mine_info[y + 1][x]);
 			notmine--;
-
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 		{
 			mvprintw(y + 1, x + 2, "%d", crazy::mine_info[y][x + 1]);
 			notmine--;
+			map_pressed[y][x + 1] == 1;
+			bang(y, x + 1);
 		}
-		if (mine_info[y + 1][x + 1] != -1)
+		if (mine_info[y + 1][x + 1] != -1 && map_pressed[y + 1][x + 1] == 0)
 		{
 			mvprintw(y + 2, x + 2, "%d", crazy::mine_info[y + 1][x + 1]);
 			notmine--;
-
+			map_pressed[y + 1][x + 1] = 1;
+			bang(y + 1, x + 1);
 		}
 	}
 	else if ((mine_info[y][x] == 0) && (x == 0) && (y == 19))
 	{
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 		{
 			mvprintw(y, x + 1, "%d", crazy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 		{
 			mvprintw(y + 1, x + 2, "%d", crazy::mine_info[y][x + 1]);
 			notmine--;
+			map_pressed[y][x + 1] = 1;
+			bang(y, x + 1);
 		}
-		if (mine_info[y - 1][x + 1] != -1)
+		if (mine_info[y - 1][x + 1] != -1 && map_pressed[y - 1][x + 1] == 0)
 		{
-			mvprintw(y, x + 2, "%d", crazy::mine_info[y - 1][x + 1]);										                notmine--;
-
+			mvprintw(y, x + 2, "%d", crazy::mine_info[y - 1][x + 1]);
+			notmine--;
+			map_pressed[y - 1][x + 1] = 1;
+			bang(y - 1, x + 1);
 		}
 	}
 
 	else if ((mine_info[y][x] == 0) && (x == 19) && (y == 0))
 	{
 
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 		{
 			mvprintw(y + 1, x, "%d", crazy::mine_info[y][x - 1]);
 			notmine--;
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 		}
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 		{
 			mvprintw(y + 2, x + 1, "%d", crazy::mine_info[y + 1][x]);
 			notmine--;
-
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 		}
-		if (mine_info[y + 1][x - 1] != -1)
+		if (mine_info[y + 1][x - 1] != -1 && map_pressed[y + 1][x - 1] == 0)
 		{
 			mvprintw(y + 2, x, "%d", crazy::mine_info[y + 1][x - 1]);
 			notmine--;
-
+			map_pressed[y + 1][x - 1] = 1;
+			bang(y + 1, x - 1);
 		}
 	}
 	else if ((mine_info[y][x] == 0) && (x == 19) && (y == 19))
 
 	{
 
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 		{
 			mvprintw(y, x + 1, "%d", crazy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
 
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 		{
 
 			mvprintw(y + 1, x, "%d", crazy::mine_info[y][x - 1]);
 			notmine--;
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 		}
 
-		if (mine_info[y - 1][x - 1] != -1)
+		if (mine_info[y - 1][x - 1] != -1 && map_pressed[y - 1][x - 1] == 0)
 
 		{
 			mvprintw(y, x, "%d", crazy::mine_info[y - 1][x - 1]);
 			notmine--;
-
+			map_pressed[y - 1][x - 1] = 1;
+			bang(y - 1, x - 1);
 		}
 
 	}
 	else if ((mine_info[y][x] == 0) && (y == 0))
 
 	{
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 
 		{
 			mvprintw(y + 1, x, "%d", crazy::mine_info[y][x - 1]);
 			notmine--;
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 
 		{
 			mvprintw(y + 1, x + 2, "%d", crazy::mine_info[y][x + 1]);
 			notmine--;
-
+			map_pressed[y][x + 1] = 1;
+			bang(y, x + 1);
 		}
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 
 		{
 			mvprintw(y + 2, x + 1, "%d", crazy::mine_info[y + 1][x]);
 			notmine--;
-
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 		}
-		if (mine_info[y + 1][x + 1] != -1)
+		if (mine_info[y + 1][x + 1] != -1 && map_pressed[y + 1][x + 1] == 0)
 
 		{
 			mvprintw(y + 2, x + 2, "%d", crazy::mine_info[y + 1][x + 1]);
 			notmine--;
+			map_pressed[y + 1][x + 1] = 1;
+			bang(y + 1, x + 1);
 
 		}
-		if (mine_info[y + 1][x - 1] != -1)
+		if (mine_info[y + 1][x - 1] != -1 && map_pressed[y + 1][x - 1] == 0)
 
 		{
 			mvprintw(y + 2, x, "%d", crazy::mine_info[y + 1][x - 1]);
 			notmine--;
-
+			map_pressed[y + 1][x - 1] = 1;
+			bang(y + 1, x - 1);
 		}
 
 
@@ -765,40 +792,46 @@ void crazy::bang(int y, int x)//uncover the adjacent squares
 	else if ((mine_info[y][x] == 0) && (y == 19))
 
 	{
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 
 		{
 			mvprintw(y + 1, x, "%d", crazy::mine_info[y][x - 1]);
 			notmine--;
-
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 
 		{
 			mvprintw(y + 1, x + 2, "%d", crazy::mine_info[y][x + 1]);
 			notmine--;
+			map_pressed[y][x + 1] = 1;
+			bang(y, x + 1);
 
 		}
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 
 		{
 			mvprintw(y, x + 1, "%d", crazy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
-		if (mine_info[y - 1][x - 1] != -1)
+		if (mine_info[y - 1][x - 1] != -1 && map_pressed[y - 1][x - 1] == 0)
 
 		{
 			mvprintw(y, x, "%d", crazy::mine_info[y - 1][x - 1]);
 			notmine--;
-
+			map_pressed[y - 1][x - 1] = 1;
+			bang(y - 1, x - 1);
 		}
-		if (mine_info[y - 1][x + 1] != -1)
+		if (mine_info[y - 1][x + 1] != -1 && map_pressed[y - 1][x + 1] == 0)
 
 		{
 			mvprintw(y, x + 2, "%d", crazy::mine_info[y - 1][x + 1]);
 			notmine--;
-
+			map_pressed[y - 1][x + 1] = 1;
+			bang(y - 1, x + 1);
 		}
 
 
@@ -808,39 +841,46 @@ void crazy::bang(int y, int x)//uncover the adjacent squares
 	else if ((mine_info[y][x] == 0) && (x == 0))
 
 	{
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 
 		{
 			mvprintw(y + 2, x + 1, "%d", crazy::mine_info[y + 1][x]);
 			notmine--;
-
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 
 		{
 			mvprintw(y + 1, x + 2, "%d", crazy::mine_info[y][x + 1]);
 			notmine--;
-
+			map_pressed[y][x + 1] = 1;
+			bang(y, x + 1);
 		}
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 
 		{
 			mvprintw(y, x + 1, "%d", crazy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
-		if (mine_info[y + 1][x + 1] != -1)
+		if (mine_info[y + 1][x + 1] != -1 && map_pressed[y + 1][x + 1] == 0)
 
 		{
 			mvprintw(y + 2, x + 2, "%d", crazy::mine_info[y + 1][x + 1]);
 			notmine--;
+			map_pressed[y + 1][x + 1] = 1;
+			bang(y + 1, x + 1);
 
 		}
-		if (mine_info[y - 1][x + 1] != -1)
+		if (mine_info[y - 1][x + 1] != -1 && map_pressed[y - 1][x + 1] == 0)
 
 		{
 			mvprintw(y, x + 2, "%d", crazy::mine_info[y - 1][x + 1]);
 			notmine--;
+			map_pressed[y - 1][x + 1] = 1;
+			bang(y - 1, x + 1);
 
 		}
 
@@ -852,40 +892,48 @@ void crazy::bang(int y, int x)//uncover the adjacent squares
 	else if ((mine_info[y][x] == 0) && (x == 19))
 
 	{
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 
 		{
 			mvprintw(y + 2, x + 1, "%d", crazy::mine_info[y + 1][x]);
 			notmine--;
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 
 		}
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 
 		{
 			mvprintw(y + 1, x, "%d", crazy::mine_info[y][x - 1]);
 			notmine--;
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 
 		}
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 
 		{
 			mvprintw(y, x + 1, "%d", crazy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
 
-		if (mine_info[y - 1][x - 1] != -1)
+		if (mine_info[y - 1][x - 1] != -1 && map_pressed[y - 1][x - 1] == 0)
 
 		{
 			mvprintw(y, x, "%d", crazy::mine_info[y - 1][x - 1]);
 			notmine--;
-
+			map_pressed[y - 1][x - 1] = 1;
+			bang(y - 1, x - 1);
 		}
-		if (mine_info[y + 1][x - 1] != -1)
+		if (mine_info[y + 1][x - 1] != -1 && map_pressed[y + 1][x - 1] == 0)
 
 		{
 			mvprintw(y + 2, x, "%d", crazy::mine_info[y + 1][x - 1]);
 			notmine--;
+			map_pressed[y + 1][x - 1] = 1;
+			bang(y + 1, x - 1);
 
 		}
 
@@ -898,65 +946,67 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 
 	if ((mine_info[y][x] == 0) && (y > 0) && (y < 9) && (x > 0) && (x < 9))
 	{
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 		{
 			mvprintw(y, x + 1, "%d", easy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 		{
 			mvprintw(y + 2, x + 1, "%d", easy::mine_info[y + 1][x]);
 			notmine--;
-
-
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 		{
 			mvprintw(y + 1, x + 2, "%d", easy::mine_info[y][x + 1]);
 			notmine--;
-
-
+			map_pressed[y][x + 1] = 1;
+			bang(y, x + 1);
 
 		}
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 		{
 			mvprintw(y + 1, x, "%d", easy::mine_info[y][x - 1]);
 			notmine--;
-
-
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 
 		}
-		if (mine_info[y - 1][x - 1] != -1)
+		if (mine_info[y - 1][x - 1] != -1 && map_pressed[y - 1][x - 1] == 0)
 		{
 			mvprintw(y, x, "%d", easy::mine_info[y - 1][x - 1]);
 			notmine--;
-
-
+			map_pressed[y - 1][x - 1] = 1;
+			bang(y - 1, x - 1);
 
 		}
-		if (mine_info[y + 1][x - 1] != -1)
+		if (mine_info[y + 1][x - 1] != -1 && map_pressed[y + 1][x - 1] == 0)
 		{
 			mvprintw(y + 2, x, "%d", easy::mine_info[y + 1][x - 1]);
 			notmine--;
-
-
+			map_pressed[y + 1][x - 1] = 1;
+			bang(y + 1, x - 1);
 
 		}
-		if (mine_info[y - 1][x + 1] != -1)
+		if (mine_info[y - 1][x + 1] != -1 && map_pressed[y - 1][x + 1] == 0)
 		{
 			mvprintw(y, x + 2, "%d", easy::mine_info[y - 1][x + 1]);
 			notmine--;
-
-
+			map_pressed[y - 1][x + 1] = 1;
+			bang(y - 1, x + 1);
 
 		}
-		if (mine_info[y + 1][x + 1] != -1)
+		if (mine_info[y + 1][x + 1] != -1 && map_pressed[y + 1][x + 1] == 0)
 		{
 			mvprintw(y + 2, x + 2, "%d", easy::mine_info[y + 1][x + 1]);
 			notmine--;
-
+			map_pressed[y + 1][x + 1] = 1;
+			bang(y + 1, x + 1);
 
 		}
 
@@ -965,130 +1015,153 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 
 	else if ((mine_info[y][x] == 0) && (x == 0) && (y == 0))
 	{
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 		{
 			mvprintw(y + 2, x + 1, "%d", easy::mine_info[y + 1][x]);
 			notmine--;
-
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 		{
 			mvprintw(y + 1, x + 2, "%d", easy::mine_info[y][x + 1]);
 			notmine--;
+			map_pressed[y][x + 1] == 1;
+			bang(y, x + 1);
 		}
-		if (mine_info[y + 1][x + 1] != -1)
+		if (mine_info[y + 1][x + 1] != -1 && map_pressed[y + 1][x + 1] == 0)
 		{
 			mvprintw(y + 2, x + 2, "%d", easy::mine_info[y + 1][x + 1]);
 			notmine--;
-
+			map_pressed[y + 1][x + 1] = 1;
+			bang(y + 1, x + 1);
 		}
 	}
 	else if ((mine_info[y][x] == 0) && (x == 0) && (y == 9))
 	{
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 		{
 			mvprintw(y, x + 1, "%d", easy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 		{
 			mvprintw(y + 1, x + 2, "%d", easy::mine_info[y][x + 1]);
 			notmine--;
+			map_pressed[y][x + 1] = 1;
+			bang(y, x + 1);
 		}
-		if (mine_info[y - 1][x + 1] != -1)
+		if (mine_info[y - 1][x + 1] != -1 && map_pressed[y - 1][x + 1] == 0)
 		{
-			mvprintw(y, x + 2, "%d", easy::mine_info[y - 1][x + 1]);			
+			mvprintw(y, x + 2, "%d", easy::mine_info[y - 1][x + 1]);
 			notmine--;
-
+			map_pressed[y - 1][x + 1] = 1;
+			bang(y - 1, x + 1);
 		}
 	}
 
 	else if ((mine_info[y][x] == 0) && (x == 9) && (y == 0))
 	{
 
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 		{
 			mvprintw(y + 1, x, "%d", easy::mine_info[y][x - 1]);
 			notmine--;
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 		}
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 		{
 			mvprintw(y + 2, x + 1, "%d", easy::mine_info[y + 1][x]);
 			notmine--;
-
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 		}
-		if (mine_info[y + 1][x - 1] != -1)
+		if (mine_info[y + 1][x - 1] != -1 && map_pressed[y + 1][x - 1] == 0)
 		{
 			mvprintw(y + 2, x, "%d", easy::mine_info[y + 1][x - 1]);
 			notmine--;
-
+			map_pressed[y + 1][x - 1] = 1;
+			bang(y + 1, x - 1);
 		}
 	}
 	else if ((mine_info[y][x] == 0) && (x == 9) && (y == 9))
 
 	{
 
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 		{
 			mvprintw(y, x + 1, "%d", easy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
 
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 		{
 
 			mvprintw(y + 1, x, "%d", easy::mine_info[y][x - 1]);
 			notmine--;
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 		}
 
-		if (mine_info[y - 1][x - 1] != -1)
+		if (mine_info[y - 1][x - 1] != -1 && map_pressed[y - 1][x - 1] == 0)
 
 		{
 			mvprintw(y, x, "%d", easy::mine_info[y - 1][x - 1]);
 			notmine--;
-
+			map_pressed[y - 1][x - 1] = 1;
+			bang(y - 1, x - 1);
 		}
 
 	}
 	else if ((mine_info[y][x] == 0) && (y == 0))
 
 	{
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 
 		{
 			mvprintw(y + 1, x, "%d", easy::mine_info[y][x - 1]);
 			notmine--;
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 
 		{
 			mvprintw(y + 1, x + 2, "%d", easy::mine_info[y][x + 1]);
 			notmine--;
-
+			map_pressed[y][x + 1] = 1;
+			bang(y, x + 1);
 		}
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 
 		{
 			mvprintw(y + 2, x + 1, "%d", easy::mine_info[y + 1][x]);
 			notmine--;
-
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 		}
-		if (mine_info[y + 1][x + 1] != -1)
+		if (mine_info[y + 1][x + 1] != -1 && map_pressed[y + 1][x + 1] == 0)
 
 		{
 			mvprintw(y + 2, x + 2, "%d", easy::mine_info[y + 1][x + 1]);
 			notmine--;
+			map_pressed[y + 1][x + 1] = 1;
+			bang(y + 1, x + 1);
 
 		}
-		if (mine_info[y + 1][x - 1] != -1)
+		if (mine_info[y + 1][x - 1] != -1 && map_pressed[y + 1][x - 1] == 0)
 
 		{
 			mvprintw(y + 2, x, "%d", easy::mine_info[y + 1][x - 1]);
 			notmine--;
-
+			map_pressed[y + 1][x - 1] = 1;
+			bang(y + 1, x - 1);
 		}
 
 
@@ -1099,40 +1172,46 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 	else if ((mine_info[y][x] == 0) && (y == 9))
 
 	{
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 
 		{
 			mvprintw(y + 1, x, "%d", easy::mine_info[y][x - 1]);
 			notmine--;
-
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 
 		{
 			mvprintw(y + 1, x + 2, "%d", easy::mine_info[y][x + 1]);
 			notmine--;
+			map_pressed[y][x + 1] = 1;
+			bang(y, x + 1);
 
 		}
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 
 		{
 			mvprintw(y, x + 1, "%d", easy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
-		if (mine_info[y - 1][x - 1] != -1)
+		if (mine_info[y - 1][x - 1] != -1 && map_pressed[y - 1][x - 1] == 0)
 
 		{
 			mvprintw(y, x, "%d", easy::mine_info[y - 1][x - 1]);
 			notmine--;
-
+			map_pressed[y - 1][x - 1] = 1;
+			bang(y - 1, x - 1);
 		}
-		if (mine_info[y - 1][x + 1] != -1)
+		if (mine_info[y - 1][x + 1] != -1 && map_pressed[y - 1][x + 1] == 0)
 
 		{
 			mvprintw(y, x + 2, "%d", easy::mine_info[y - 1][x + 1]);
 			notmine--;
-
+			map_pressed[y - 1][x + 1] = 1;
+			bang(y - 1, x + 1);
 		}
 
 
@@ -1142,39 +1221,46 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 	else if ((mine_info[y][x] == 0) && (x == 0))
 
 	{
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 
 		{
 			mvprintw(y + 2, x + 1, "%d", easy::mine_info[y + 1][x]);
 			notmine--;
-
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 		}
-		if (mine_info[y][x + 1] != -1)
+		if (mine_info[y][x + 1] != -1 && map_pressed[y][x + 1] == 0)
 
 		{
 			mvprintw(y + 1, x + 2, "%d", easy::mine_info[y][x + 1]);
 			notmine--;
-
+			map_pressed[y][x + 1] = 1;
+			bang(y, x + 1);
 		}
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 
 		{
 			mvprintw(y, x + 1, "%d", easy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
-		if (mine_info[y + 1][x + 1] != -1)
+		if (mine_info[y + 1][x + 1] != -1 && map_pressed[y + 1][x + 1] == 0)
 
 		{
 			mvprintw(y + 2, x + 2, "%d", easy::mine_info[y + 1][x + 1]);
 			notmine--;
+			map_pressed[y + 1][x + 1] = 1;
+			bang(y + 1, x + 1);
 
 		}
-		if (mine_info[y - 1][x + 1] != -1)
+		if (mine_info[y - 1][x + 1] != -1 && map_pressed[y - 1][x + 1] == 0)
 
 		{
 			mvprintw(y, x + 2, "%d", easy::mine_info[y - 1][x + 1]);
 			notmine--;
+			map_pressed[y - 1][x + 1] = 1;
+			bang(y - 1, x + 1);
 
 		}
 
@@ -1186,46 +1272,53 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 	else if ((mine_info[y][x] == 0) && (x == 9))
 
 	{
-		if (mine_info[y + 1][x] != -1)
+		if (mine_info[y + 1][x] != -1 && map_pressed[y + 1][x] == 0)
 
 		{
 			mvprintw(y + 2, x + 1, "%d", easy::mine_info[y + 1][x]);
 			notmine--;
+			map_pressed[y + 1][x] = 1;
+			bang(y + 1, x);
 
 		}
-		if (mine_info[y][x - 1] != -1)
+		if (mine_info[y][x - 1] != -1 && map_pressed[y][x - 1] == 0)
 
 		{
 			mvprintw(y + 1, x, "%d", easy::mine_info[y][x - 1]);
 			notmine--;
+			map_pressed[y][x - 1] = 1;
+			bang(y, x - 1);
 
 		}
-		if (mine_info[y - 1][x] != -1)
+		if (mine_info[y - 1][x] != -1 && map_pressed[y - 1][x] == 0)
 
 		{
 			mvprintw(y, x + 1, "%d", easy::mine_info[y - 1][x]);
 			notmine--;
-
+			map_pressed[y - 1][x] = 1;
+			bang(y - 1, x);
 		}
 
-		if (mine_info[y - 1][x - 1] != -1)
+		if (mine_info[y - 1][x - 1] != -1 && map_pressed[y - 1][x - 1] == 0)
 
 		{
 			mvprintw(y, x, "%d", easy::mine_info[y - 1][x - 1]);
 			notmine--;
-
+			map_pressed[y - 1][x - 1] = 1;
+			bang(y - 1, x - 1);
 		}
-		if (mine_info[y + 1][x - 1] != -1)
+		if (mine_info[y + 1][x - 1] != -1 && map_pressed[y + 1][x - 1] == 0)
 
 		{
 			mvprintw(y + 2, x, "%d", easy::mine_info[y + 1][x - 1]);
 			notmine--;
+			map_pressed[y + 1][x - 1] = 1;
+			bang(y + 1, x - 1);
 
 		}
 
 	}
 }
-
 
 
 	void crazy ::sethint()
@@ -1275,7 +1368,7 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 			attrset(A_UNDERLINE);
 			mvaddstr(2, 30, "Crazy LEVEL");
 			mvaddstr(3, 40, "wanna quit game?press q");
-			mvaddstr(4, 40, "wanna uncover?press u");
+			mvaddstr(4, 40, "wanna uncover?press s");
 			mvaddstr(5, 40, "(Do not uncover outside the map and don't uncover those which have been uncovered)");
 			mvaddstr(6, 40, "Need a hint?,press h");
 			mvaddstr(7, 40, "wanna erect a flag?press f");
@@ -1307,7 +1400,7 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 			case 'h':
 			{
 				mvaddstr(8, 40, "hint :");
-				mvaddstr(9, 40, "Please press 1~9 to get the mine numbers in that row(sorry just provide 9 rows )");
+				mvaddstr(9, 40, "Please press 1 to 9 and 0 and  w e r t y u i o p to get the mine numbers in that row");
 				p = getch();
 
 				switch (p)
@@ -1348,9 +1441,50 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 					break;
 				case '9':
 					mvprintw(18, 32, "row 9:");
-					mvprintw(18, 40, "%d", mines_in_a_row[8]);															break;
+					mvprintw(18, 40, "%d", mines_in_a_row[8]);
+					break;
+				case '0':
+					mvprintw(19, 32, "row 10:");
+					mvprintw(19, 40, "%d", mines_in_a_row[9]);
+					break;
+				case 'w':
+					mvprintw(20, 32, "row 11:");
+					mvprintw(20, 40, "%d", mines_in_a_row[10]);
+					break;
+				case 'e':
+					mvprintw(21, 32, "row 12:");
+					mvprintw(21, 40, "%d", mines_in_a_row[11]);
+					break;
+				case 'r':
+					mvprintw(22, 32, "row 13:");
+					mvprintw(22, 40, "%d", mines_in_a_row[12]);
+					break;
+				case 't':
+					mvprintw(23, 32, "row 14:");
+					mvprintw(23, 40, "%d", mines_in_a_row[13]);
+					break;
+				case 'y':
+					mvprintw(24, 32, "row 15:");
+					mvprintw(24, 40, "%d", mines_in_a_row[14]);
+					break;
+				case 'u':
+					mvprintw(25, 32, "row 16:");
+					mvprintw(25, 40, "%d", mines_in_a_row[15]);
+					break;
+				case 'i':
+					mvprintw(26, 32, "row 17:");
+					mvprintw(26, 40, "%d", mines_in_a_row[16]);
+					break;
+				case 'o':
+					mvprintw(27, 32, "row 18:");
+					mvprintw(27, 40, "%d", mines_in_a_row[17]);
+					break;
+				case 'p':
+					mvprintw(28, 32, "row 19:");
+					mvprintw(28, 40, "%d", mines_in_a_row[18]);
+					break;
 				default:
-					mvprintw(10, 41, "only 1~9,press h and select one of 1~9 !!!");
+					mvprintw(10, 43, "only 1~9,press h and select one of 1~9 !!!");
 					break;
 				}
 				break;
@@ -1358,11 +1492,11 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 			}
 			//按q則離開遊戲
 			case 'q':mvaddstr(27, 1, "you already quit the game,press any key to leave"); int input; input = getch(); go_on = false; break;
-			case 'u'://開踩
+			case 's'://開踩
 				attrset(A_REVERSE);//反白
-				if (crazy::mine_info[y - 1][x - 1] == 0)
+				if (crazy::mine_info[y - 1][x - 1] == 0&&map_pressed[y-1][x-1]!=1)
 				{
-
+					map_pressed[y - 1][x - 1] = 1;
 					printw("%d", crazy::mine_info[y - 1][x - 1]);
 
 					bang(y - 1, x - 1);
@@ -1370,8 +1504,9 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 					break;
 				}
 
-				if (crazy::mine_info[y - 1][x - 1] != -1 && crazy::mine_info[y - 1][x - 1] != 0)             //沒踩到地雷，遊戲繼續
+				if (crazy::mine_info[y - 1][x - 1] != -1 && crazy::mine_info[y - 1][x - 1] != 0 && map_pressed[y - 1][x - 1] !=1 )             //沒踩到地雷，遊戲繼續
 				{
+					map_pressed[y - 1][x - 1] = 1;
 					printw("%d", crazy::mine_info[y - 1][x - 1]);
 					notmine--;
 					break;
@@ -1383,9 +1518,9 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 					init_pair(1, COLOR_CYAN, COLOR_RED);
 					attrset(COLOR_PAIR(1));
 					//踩到地雷，爆了，玩家輸入任意鍵以獲得整個地圖位置
-					printw("x");
-					mvaddstr(24, 1, "You uncover a mine,Game Over!!!!");
-					mvaddstr(25, 1, "please press any key so as to get the whole maps ");
+					printw("b");
+					mvaddstr(17, 1, "You uncover a mine,Game Over!!!!");
+					mvaddstr(18, 1, "please press any key so as to get the whole maps ");
 					int a = getch();
 					clear();
 					refresh();
@@ -1396,8 +1531,9 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 
 
 				}
+				break;
 			case 'f':
-				printw("f");
+				printw("f"); break;
 			case KEY_LEFT: --x; mvaddstr(1, 54, "Left "); break;
 			case KEY_RIGHT: ++x; mvaddstr(1, 54, "Right"); break;
 			case KEY_UP: --y; mvaddstr(1, 54, "Up "); break;
@@ -1441,7 +1577,7 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 			attrset(A_UNDERLINE);
 			mvaddstr(2, 30, "Easy LEVEL");
 			mvaddstr(3, 40, "wanna quit game?press q");
-			mvaddstr(4, 40, "wanna uncover?press u");
+			mvaddstr(4, 40, "wanna uncover?press s");
 			mvaddstr(5, 40, "(Do not uncover outside the map and don't uncover those which have been uncovered)");
 			mvaddstr(6, 40, "Need a hint?,press h");
 			mvaddstr(7, 40, "wanna erect a flag?press f");
@@ -1524,10 +1660,11 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 			}
 			//按q則離開遊戲
 			case 'q':mvaddstr(27, 1, "you already quit the game,press any key to leave"); int input; input = getch(); go_on = false; break;
-			case 'u'://開踩
+			case 's'://開踩
 				attrset(A_REVERSE);//反白
-				if (easy::mine_info[y - 1][x - 1] == 0)
+				if (easy::mine_info[y - 1][x - 1] == 0 &&easy::map_pressed[y-1][x-1]!=1)
 				{
+					easy::map_pressed[y - 1][x - 1] = 1;
 
 					printw("%d", easy::mine_info[y - 1][x - 1]);
 
@@ -1536,8 +1673,9 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 					break;
 				}
 
-				if (easy::mine_info[y - 1][x - 1] != -1 && easy::mine_info[y - 1][x - 1] != 0)             //沒踩到地雷，遊戲繼續
+				if (easy::mine_info[y - 1][x - 1] != -1 && easy::mine_info[y - 1][x - 1] != 0&&easy::map_pressed[y-1][x-1]!=1)             //沒踩到地雷，遊戲繼續
 				{
+					easy::map_pressed[y - 1][x - 1] = 1;
 					printw("%d", easy::mine_info[y - 1][x - 1]);
 					notmine--;
 					break;
@@ -1549,9 +1687,9 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 					init_pair(1, COLOR_CYAN, COLOR_RED);
 					attrset(COLOR_PAIR(1));
 					//踩到地雷，爆了，玩家輸入任意鍵以獲得整個地圖位置
-					printw("x");
-					mvaddstr(24, 1, "You uncover a mine,Game Over!!!!");
-					mvaddstr(25, 1, "please press any key so as to get the whole maps ");
+					printw("b");
+					mvaddstr(17, 1, "You uncover a mine,Game Over!!!!");
+					mvaddstr(18, 1, "please press any key so as to get the whole maps ");
 					int a = getch();
 					clear();
 					refresh();
@@ -1562,8 +1700,9 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 
 
 				}
+				break;
 			case 'f':
-				printw("f");
+				printw("f"); break;
 			case KEY_LEFT: --x; mvaddstr(1, 54, "Left "); break;
 			case KEY_RIGHT: ++x; mvaddstr(1, 54, "Right"); break;
 			case KEY_UP: --y; mvaddstr(1, 54, "Up "); break;
@@ -1613,7 +1752,7 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 				if (mine_info[i][j] != -1)
 					outfile << mine_info[i][j];
 				else
-					outfile << 'x';
+					outfile << 'b';
 
 
 
@@ -1636,7 +1775,7 @@ void easy::bang(int y, int x)//uncover the adjacent squares
 				if (mine_info[i][j] != -1)
 					outfile << mine_info[i][j];
 				else
-					outfile << 'x';
+					outfile << 'b';
 
 
 
